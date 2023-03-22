@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
         backgroundColor: Colors.white70,
         appBar: AppBar(
           leading: const Icon(Icons.add_task_outlined),
-          title: Text('Flutter: Primeiros Passos'),
+          title: Text('Esse App ta uma porra'),
         ),
         body: ListView(
           children: [
@@ -77,7 +77,16 @@ class WidgetContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: color,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(20),
+        color: color,
+        border: Border.all(
+          width: 4,
+        ),
+        image: DecorationImage(
+            image: NetworkImage(
+                'https://i.ytimg.com/vi/e4jbTjkzel0/hqdefault.jpg')),
+      ),
       width: 100,
       height: 150,
     );

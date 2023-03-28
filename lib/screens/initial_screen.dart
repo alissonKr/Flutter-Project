@@ -26,7 +26,11 @@ class _InitialScreenState extends State<InitialScreen> {
             task('Aprender Flutter', 'assets/images/dash.png', 3),
             task('Andar de Bike', 'assets/images/bike.jpg', 2),
             task('Meditar', 'assets/images/meditar.jpg', 5),
-            task('Ler', 'assets/images/ler.jpg', 4),
+            task(
+              'Ler',
+              'assets/images/ler.jpg',
+              4,
+            ),
             task('Jogar', 'assets/images/jogar.jpg', 1),
             SizedBox(
               height: 80,

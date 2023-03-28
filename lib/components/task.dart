@@ -13,18 +13,16 @@ class task extends StatefulWidget {
 }
 
 class _taskState extends State<task> {
+  int clicks = 0;
   int nivel = 0;
+
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Stack(
         children: [
-          Container(
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(4), color: Colors.blue),
-            height: 140,
-          ),
+          colorChange(clicks),
           Column(
             children: [
               Container(
@@ -72,8 +70,13 @@ class _taskState extends State<task> {
                       child: ElevatedButton(
                           onPressed: () {
                             setState(() {
+                              clicks++;
                               nivel++;
+                              if (((nivel / widget.dificuldade) / 10 >= 1)) {
+                                nivel = 0;
+                              }
                             });
+                            print(clicks);
                             //print(nivel);
                           },
                           child: Column(
@@ -99,11 +102,10 @@ class _taskState extends State<task> {
                     child: SizedBox(
                       width: 200,
                       child: LinearProgressIndicator(
-                        color: Colors.white,
-                        value: (widget.dificuldade > 0)
-                            ? (nivel / widget.dificuldade) / 10
-                            : 1,
-                      ),
+                          color: Colors.white,
+                          value: (widget.dificuldade > 0)
+                              ? (nivel / widget.dificuldade) / 10
+                              : 1),
                     ),
                   ),
                   Padding(
@@ -119,6 +121,48 @@ class _taskState extends State<task> {
           )
         ],
       ),
+    );
+  }
+}
+
+class colorChange extends StatelessWidget {
+  Container ateDez() {
+    return Container(
+      /*blue,green,yellow,orange,red,purple,black*/
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(4),
+          color: ((clicks < 10
+              ? Colors.blue
+              : clicks > 20
+                  ? Colors.green
+                  : clicks > 30
+                      ? Colors.yellow
+                      : clicks > 40
+                          ? Colors.black
+                          : Colors.cyanAccent))),
+      height: 140,
+    );
+  }
+
+  int clicks;
+  colorChange(this.clicks, {Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      /*blue,green,yellow,orange,red,purple,black*/
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(4),
+          color: ((clicks < 10
+              ? Colors.blue
+              : clicks > 20
+                  ? Colors.green
+                  : clicks > 30
+                      ? Colors.yellow
+                      : clicks > 40
+                          ? Colors.black
+                          : Colors.cyanAccent))),
+      height: 140,
     );
   }
 }

@@ -13,6 +13,17 @@ class task extends StatefulWidget {
 }
 
 class _taskState extends State<task> {
+  Color colorSet() {
+    if (clicks == 1) {
+      return const Color.fromARGB(255, 19, 167, 0);
+    } else if (clicks == 2) {
+      return const Color.fromARGB(255, 207, 149, 67);
+    } else if (clicks >= 3) {
+      return const Color.fromARGB(255, 43, 48, 108);
+    }
+    return Colors.blue;
+  }
+
   int clicks = 0;
   int nivel = 0;
 
@@ -22,7 +33,12 @@ class _taskState extends State<task> {
       padding: const EdgeInsets.all(8.0),
       child: Stack(
         children: [
-          colorChange(clicks),
+          Container(
+            /*blue,green,yellow,orange,red,purple,black*/
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(4), color: (colorSet())),
+            height: 140,
+          ),
           Column(
             children: [
               Container(
@@ -70,13 +86,12 @@ class _taskState extends State<task> {
                       child: ElevatedButton(
                           onPressed: () {
                             setState(() {
-                              clicks++;
                               nivel++;
                               if (((nivel / widget.dificuldade) / 10 >= 1)) {
+                                clicks++;
                                 nivel = 0;
                               }
                             });
-                            print(clicks);
                             //print(nivel);
                           },
                           child: Column(
@@ -121,48 +136,6 @@ class _taskState extends State<task> {
           )
         ],
       ),
-    );
-  }
-}
-
-class colorChange extends StatelessWidget {
-  Container ateDez() {
-    return Container(
-      /*blue,green,yellow,orange,red,purple,black*/
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(4),
-          color: ((clicks < 10
-              ? Colors.blue
-              : clicks > 20
-                  ? Colors.green
-                  : clicks > 30
-                      ? Colors.yellow
-                      : clicks > 40
-                          ? Colors.black
-                          : Colors.cyanAccent))),
-      height: 140,
-    );
-  }
-
-  int clicks;
-  colorChange(this.clicks, {Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      /*blue,green,yellow,orange,red,purple,black*/
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(4),
-          color: ((clicks < 10
-              ? Colors.blue
-              : clicks > 20
-                  ? Colors.green
-                  : clicks > 30
-                      ? Colors.yellow
-                      : clicks > 40
-                          ? Colors.black
-                          : Colors.cyanAccent))),
-      height: 140,
     );
   }
 }

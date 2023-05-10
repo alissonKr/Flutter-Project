@@ -1,4 +1,5 @@
 import 'package:alura/components/task.dart';
+import 'package:alura/screens/form_screen.dart';
 import 'package:flutter/material.dart';
 
 class InitialScreen extends StatefulWidget {
@@ -9,8 +10,6 @@ class InitialScreen extends StatefulWidget {
 }
 
 class _InitialScreenState extends State<InitialScreen> {
-  bool opacidade = true;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,33 +17,32 @@ class _InitialScreenState extends State<InitialScreen> {
         leading: Container(),
         title: const Text('Tarefas'),
       ),
-      body: AnimatedOpacity(
-        opacity: opacidade ? 1 : 0,
-        duration: const Duration(milliseconds: 800),
-        child: ListView(
-          children: const [
-            task('Aprender Flutter', 'assets/images/dash.png', 3),
-            task('Andar de Bike', 'assets/images/bike.jpg', 2),
-            task('Meditar', 'assets/images/meditar.jpg', 5),
-            task(
-              'Ler',
-              'assets/images/ler.jpg',
-              4,
-            ),
-            task('Jogar', 'assets/images/jogar.jpg', 1),
-            SizedBox(
-              height: 80,
-            )
-          ],
-        ),
+      body: ListView(
+        children: const [
+          task('Aprender Flutter', 'assets/images/dash.png', 3),
+          task('Andar de Bike', 'assets/images/bike.jpg', 2),
+          task('Meditar', 'assets/images/meditar.jpg', 5),
+          task(
+            'Ler',
+            'assets/images/ler.jpg',
+            4,
+          ),
+          task('Jogar', 'assets/images/jogar.jpg', 1),
+          SizedBox(
+            height: 80,
+          )
+        ],
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          setState(() {
-            opacidade = !opacidade;
-          });
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => FormScreen(),
+            ),
+          );
         },
-        child: const Icon(Icons.remove_red_eye),
+        child: const Icon(Icons.add),
       ),
     );
   }

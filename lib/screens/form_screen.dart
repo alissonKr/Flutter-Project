@@ -82,12 +82,12 @@ class _FormScreenState extends State<FormScreen> {
                       onChanged: (text) {
                         setState(() {});
                       },
-                      validator: (value){
-                        if(value!.isEmpty){
+                      validator: (value) {
+                        if (value!.isEmpty) {
                           return 'Insira um URL de Imagem!';
                         }
                         return null;
-                      } ,
+                      },
                       keyboardType: TextInputType.url,
                       controller: imageController,
                       textAlign: TextAlign.center,
@@ -121,10 +121,16 @@ class _FormScreenState extends State<FormScreen> {
                   ),
                   ElevatedButton(
                     onPressed: () {
-                      if(_formKey.currentState!.validate()){
-                      print(nameController.text);
-                      print(difficultyController.text);
-                      print(imageController.text);
+                      if (_formKey.currentState!.validate()) {
+                        print(nameController.text);
+                        print(difficultyController.text);
+                        print(imageController.text);
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text('Printando Nova Tarefa'),
+                          ),
+                        );
+                        Navigator.pop(context);
                       }
                     },
                     child: Text('Adicionar!'),

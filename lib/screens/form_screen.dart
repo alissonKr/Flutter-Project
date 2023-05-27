@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 class FormScreen extends StatefulWidget {
-  const FormScreen({Key? key}) : super(key: key);
+  const FormScreen({Key? key, required this.taskContext}) : super(key: key);
+
+  final BuildContext taskContext;
 
   @override
   State<FormScreen> createState() => _FormScreenState();
@@ -13,13 +15,14 @@ class _FormScreenState extends State<FormScreen> {
   TextEditingController imageController = TextEditingController();
 
   final _formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     return Form(
       key: _formKey,
       child: Scaffold(
         appBar: AppBar(
-          title: const Text('Nova Tar efa'),
+          title: const Text('Nova Tarefa'),
         ),
         body: Center(
           child: SingleChildScrollView(
@@ -127,7 +130,7 @@ class _FormScreenState extends State<FormScreen> {
                         print(imageController.text);
                         ScaffoldMessenger.of(context).showSnackBar(
                           const SnackBar(
-                            content: Text('Printando Nova Tarefa'),
+                            content: Text('Criando Nova Tarefa'),
                           ),
                         );
                         Navigator.pop(context);

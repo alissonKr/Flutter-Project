@@ -1,4 +1,4 @@
-import 'package:alura/components/task.dart';
+import 'package:alura/data/task_inherited.dart';
 import 'package:alura/screens/form_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -18,27 +18,14 @@ class _InitialScreenState extends State<InitialScreen> {
         title: const Text('Tarefas'),
       ),
       body: ListView(
-        children: const [
-          task('Aprender Flutter', 'assets/images/dash.png', 3),
-          task('Andar de Bike', 'assets/images/bike.jpg', 2),
-          task('Meditar', 'assets/images/meditar.jpg', 5),
-          task(
-            'Ler',
-            'assets/images/ler.jpg',
-            4,
-          ),
-          task('Jogar', 'assets/images/jogar.jpg', 1),
-          SizedBox(
-            height: 80,
-          )
-        ],
+        children: TaskInherited.of(context).taskList,
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => FormScreen(),
+              builder: (contextNew) => FormScreen(taskContext: context,),
             ),
           );
         },

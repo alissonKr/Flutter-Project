@@ -5,6 +5,7 @@ class task extends StatefulWidget {
   final String nome;
   final String foto;
   final int dificuldade;
+
   const task(this.nome, this.foto, this.dificuldade, {Key? key})
       : super(key: key);
 
@@ -13,18 +14,6 @@ class task extends StatefulWidget {
 }
 
 class _taskState extends State<task> {
-  Color colorSet() {
-    if (clicks == 1) {
-      return const Color.fromARGB(255, 19, 167, 0);
-    } else if (clicks == 2) {
-      return const Color.fromARGB(255, 207, 149, 67);
-    } else if (clicks >= 3) {
-      return const Color.fromARGB(255, 43, 48, 108);
-    }
-    return Colors.blue;
-  }
-
-  int clicks = 0;
   int nivel = 0;
 
   @override
@@ -34,9 +23,8 @@ class _taskState extends State<task> {
       child: Stack(
         children: [
           Container(
-            /*blue,green,yellow,orange,red,purple,black*/
             decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(4), color: (colorSet())),
+                borderRadius: BorderRadius.circular(4), color: Colors.blue),
             height: 140,
           ),
           Column(
@@ -87,10 +75,6 @@ class _taskState extends State<task> {
                           onPressed: () {
                             setState(() {
                               nivel++;
-                              if (((nivel / widget.dificuldade) / 10 >= 1)) {
-                                clicks++;
-                                nivel = 0;
-                              }
                             });
                             //print(nivel);
                           },
@@ -115,12 +99,13 @@ class _taskState extends State<task> {
                   Padding(
                     padding: const EdgeInsets.all(8),
                     child: SizedBox(
-                      width: 200,
                       child: LinearProgressIndicator(
-                          color: Colors.white,
-                          value: (widget.dificuldade > 0)
-                              ? (nivel / widget.dificuldade) / 10
-                              : 1),
+                        color: Colors.white,
+                        value: (widget.dificuldade > 0)
+                            ? (nivel / widget.dificuldade) / 10
+                            : 1,
+                      ),
+                      width: 200,
                     ),
                   ),
                   Padding(

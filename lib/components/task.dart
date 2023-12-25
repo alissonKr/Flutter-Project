@@ -88,14 +88,14 @@ class _taskState extends State<task> {
                             });
                             //print(nivel);
                           },
-                          child: Column(
+                          child: const Column(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             crossAxisAlignment: CrossAxisAlignment.end,
-                            children: const [
+                            children: [
                               Icon(Icons.arrow_drop_up),
                               Text(
                                 'UP',
-                                style: TextStyle(fontSize: 12),
+                                style: TextStyle(fontSize:10),
                               ),
                             ],
                           )),
@@ -109,13 +109,13 @@ class _taskState extends State<task> {
                   Padding(
                     padding: const EdgeInsets.all(8),
                     child: SizedBox(
+                      width: 200,
                       child: LinearProgressIndicator(
                         color: Colors.white,
                         value: (widget.dificuldade > 0)
                             ? (widget.nivel / widget.dificuldade) / 10
                             : 1,
                       ),
-                      width: 200,
                     ),
                   ),
                   Padding(

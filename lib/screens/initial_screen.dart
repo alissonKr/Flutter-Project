@@ -14,10 +14,24 @@ class _InitialScreenState extends State<InitialScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: Container(),
-        title: const Text(
-          'Tarefas',
-          style: TextStyle(color: Colors.white),
+        leading: SizedBox(),
+        title: Column(
+          children: [
+            Row(
+              children: [
+                Text(
+                  'Tarefas',
+                  style: TextStyle(color: Colors.white),
+                ),
+                Icon(Icons.change_circle_outlined, size:40,),
+              ],
+            ),
+            Row(
+              children: [
+                SizedBox(),
+              ],
+            ),
+          ],
         ),
         backgroundColor: Colors.blue,
       ),

@@ -18,6 +18,7 @@ class _InitialScreenState extends State<InitialScreen> {
         title: Column(
           children: [
             Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
                   'Tarefas',

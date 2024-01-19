@@ -79,9 +79,14 @@ class _taskState extends State<task> {
                       ],
                     ),
                     SizedBox(
-                      height: 52,
-                      width: 52,
+                      height: 62,
+                      width: 62,
                       child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(backgroundColor: Colors.blue,
+                        foregroundColor: Colors.white,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10.0)
+                        )),
                           onPressed: () {
                             setState(() {
                               widget.nivel++;

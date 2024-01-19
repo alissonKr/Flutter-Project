@@ -14,22 +14,31 @@ class _InitialScreenState extends State<InitialScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: SizedBox(),
+        toolbarHeight: 80,
+        //leading: SizedBox(),
         title: Column(
           children: [
             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 Text(
                   'Tarefas',
                   style: TextStyle(color: Colors.white),
                 ),
-                Icon(Icons.change_circle_outlined, size:40,),
+                Icon(Icons.change_circle_outlined, size:40, color: Colors.white,),
               ],
             ),
             Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                SizedBox(),
+                SizedBox(
+                  width: 200,
+                  child: LinearProgressIndicator(
+                    color: Colors.white,
+                    value: 1,
+                  ),
+                ),
+                Text('Level: ', style: TextStyle(color: Colors.white),),
               ],
             ),
           ],

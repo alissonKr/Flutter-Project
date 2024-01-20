@@ -44,6 +44,12 @@ class _FormScreenState extends State<FormScreen> {
             style: TextStyle(color: Colors.white),
           ),
           backgroundColor: Colors.blue,
+          leading: IconButton(
+            icon: Icon(Icons.arrow_back, color: Colors.white,),
+            onPressed: () {
+              Navigator.pop(context);
+            },
+          ),
         ),
         body: Center(
           child: SingleChildScrollView(

@@ -142,6 +142,8 @@ class _FormScreenState extends State<FormScreen> {
                     ),
                   ),
                   ElevatedButton(
+                    style: ElevatedButton.styleFrom(backgroundColor: Colors.blue,
+                    foregroundColor: Colors.white),
                     onPressed: () {
                       if (_formKey.currentState!.validate()) {
                         /*print(nameController.text);

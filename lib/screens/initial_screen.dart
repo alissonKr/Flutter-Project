@@ -50,6 +50,8 @@ class _InitialScreenState extends State<InitialScreen> {
         padding: const EdgeInsets.only(top: 8, bottom: 70),
       ),
       floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.blue,
+        foregroundColor: Colors.white,
         onPressed: () {
           Navigator.push(
             context,

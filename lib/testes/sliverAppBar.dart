@@ -16,7 +16,7 @@ class _sliverAppBarState extends State<sliverAppBar> {
           SliverAppBar(
             expandedHeight: 200.0,
             flexibleSpace: FlexibleSpaceBar(
-              title: Row(
+              title: const Row(
                 children: [
                   Icon(Icons.star),
                   SizedBox(width: 8.0),

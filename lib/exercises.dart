@@ -16,10 +16,10 @@ class MyApp extends StatelessWidget {
         backgroundColor: Colors.white70,
         appBar: AppBar(
           leading: const Icon(Icons.add_task_outlined),
-          title: Text('Esse App ta uma porra'),
+          title: const Text('Esse App ta uma porra'),
         ),
         body: ListView(
-          children: [
+          children: const [
             WidgetsAttaks(
                 color1: Colors.white,
                 color2: Colors.pinkAccent,
@@ -83,7 +83,7 @@ class WidgetContainer extends StatelessWidget {
         border: Border.all(
           width: 4,
         ),
-        image: DecorationImage(
+        image: const DecorationImage(
             image: NetworkImage(
                 'https://i.ytimg.com/vi/e4jbTjkzel0/hqdefault.jpg')),
       ),

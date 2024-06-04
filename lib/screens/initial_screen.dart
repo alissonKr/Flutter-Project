@@ -16,7 +16,7 @@ class _InitialScreenState extends State<InitialScreen> {
       appBar: AppBar(
         toolbarHeight: 80,
         //leading: SizedBox(),
-        title: Column(
+        title: const Column(
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -46,8 +46,8 @@ class _InitialScreenState extends State<InitialScreen> {
         backgroundColor: Colors.blue,
       ),
       body: ListView(
-        children: TaskInherited.of(context).taskList,
         padding: const EdgeInsets.only(top: 8, bottom: 70),
+        children: TaskInherited.of(context).taskList,
       ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.blue,

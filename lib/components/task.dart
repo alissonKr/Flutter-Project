@@ -6,8 +6,7 @@ class task extends StatefulWidget {
   final String foto;
   final int dificuldade;
 
-  task(this.nome, this.foto, this.dificuldade, {Key? key})
-      : super(key: key);
+  task(this.nome, this.foto, this.dificuldade, {Key? key}) : super(key: key);
 
   int nivel = 0;
 
@@ -16,7 +15,6 @@ class task extends StatefulWidget {
 }
 
 class _taskState extends State<task> {
-
   bool assetOrNetwork() {
     if (widget.foto.contains('http')) {
       return false;
@@ -82,11 +80,11 @@ class _taskState extends State<task> {
                       height: 62,
                       width: 62,
                       child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(backgroundColor: Colors.blue,
-                        foregroundColor: Colors.white,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10.0)
-                        )),
+                          style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.blue,
+                              foregroundColor: Colors.white,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10.0))),
                           onPressed: () {
                             setState(() {
                               widget.nivel++;
@@ -100,7 +98,7 @@ class _taskState extends State<task> {
                               Icon(Icons.arrow_drop_up),
                               Text(
                                 'UP',
-                                style: TextStyle(fontSize:10),
+                                style: TextStyle(fontSize: 10),
                               ),
                             ],
                           )),

@@ -31,7 +31,7 @@ class _sliverAppBarState extends State<sliverAppBar> {
           ),
           SliverList(
             delegate: SliverChildBuilderDelegate(
-                  (BuildContext context, int index) {
+              (BuildContext context, int index) {
                 return ListTile(
                   title: Text('Item $index'),
                 );
@@ -44,4 +44,3 @@ class _sliverAppBarState extends State<sliverAppBar> {
     );
   }
 }
-

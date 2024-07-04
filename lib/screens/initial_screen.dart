@@ -25,7 +25,11 @@ class _InitialScreenState extends State<InitialScreen> {
                   'Tarefas',
                   style: TextStyle(color: Colors.white),
                 ),
-                Icon(Icons.change_circle_outlined, size:40, color: Colors.white,),
+                Icon(
+                  Icons.change_circle_outlined,
+                  size: 40,
+                  color: Colors.white,
+                ),
               ],
             ),
             Row(
@@ -38,7 +42,10 @@ class _InitialScreenState extends State<InitialScreen> {
                     value: 1,
                   ),
                 ),
-                Text('Level: ', style: TextStyle(color: Colors.white),),
+                Text(
+                  'Level: ',
+                  style: TextStyle(color: Colors.white),
+                ),
               ],
             ),
           ],

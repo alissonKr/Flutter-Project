@@ -45,7 +45,10 @@ class _FormScreenState extends State<FormScreen> {
           ),
           backgroundColor: Colors.blue,
           leading: IconButton(
-            icon: const Icon(Icons.arrow_back, color: Colors.white,),
+            icon: const Icon(
+              Icons.arrow_back,
+              color: Colors.white,
+            ),
             onPressed: () {
               Navigator.pop(context);
             },
@@ -148,8 +151,9 @@ class _FormScreenState extends State<FormScreen> {
                     ),
                   ),
                   ElevatedButton(
-                    style: ElevatedButton.styleFrom(backgroundColor: Colors.blue,
-                    foregroundColor: Colors.white),
+                    style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.blue,
+                        foregroundColor: Colors.white),
                     onPressed: () {
                       if (_formKey.currentState!.validate()) {
                         /*print(nameController.text);

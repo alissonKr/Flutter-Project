@@ -14,23 +14,37 @@ class TaskDao {
   static String _image = 'image';
 
   save(task tarefa) async {}
-  Future<List<task>> findAll() async{
+  Future<List<task>> findAll() async {
     print('Estamos acessando o findAll: ');
     final Database bancoDeDados = await getDatabase();
-    final List<Map<String, dynamic>> result = await bancoDeDados.query(_tablename);
+    final List<Map<String, dynamic>> result =
+        await bancoDeDados.query(_tablename);
     print('Procurando dados no banco de dados... encontrado? $result');
     return toList(result);
   }
-  List<task> toList(List<Map<String, dynamic>> mapaDeTarefas){
+
+  List<task> toList(List<Map<String, dynamic>> mapaDeTarefas) {
     print('Convertendo to List: ');
     final List<task> tarefas = [];
-    for (Map<String, dynamic> linha in mapaDeTarefas){
+    for (Map<String, dynamic> linha in mapaDeTarefas) {
       final task tarefa = task(linha[_name], linha[_image], linha[_difficulty]);
       tarefas.add(tarefa);
     }
     print(' Lista de Tarefas $tarefas');
     return tarefas;
   }
-  Future<List<task> find(String nomeDaTarefa) async {}
-  delete(String nomeDaTarefa) async{}
+
+  Future<List<task>> find(String nomeDaTarefa) async {
+    print('acessando find: ');
+    final Database bancoDeDados = await getDatabase();
+    final List<Map<String, dynamic>> result = await bancoDeDados.query(
+      _tablename,
+      where: '$_name = ?',
+      whereArgs: [nomeDaTarefa],
+    );
+    print('Tarefa encontrada: ${toList(result)}');
+    return toList(result);
+  }
+
+  delete(String nomeDaTarefa) async {}
 }

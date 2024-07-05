@@ -32,7 +32,7 @@ class TaskDao {
     }
   }
 
-   Map<String, dynamic> toMap(task tarefa){
+  Map<String, dynamic> toMap(task tarefa) {
     print('Convertendo Tarefa em map: ');
     final Map<String, dynamic> mapaDeTarefas = Map();
     mapaDeTarefas[_name] = tarefa.nome;
@@ -40,7 +40,7 @@ class TaskDao {
     mapaDeTarefas[_image] = tarefa.foto;
     print('Mapa de Tarefas: $mapaDeTarefas');
     return mapaDeTarefas;
-   }
+  }
 
   Future<List<task>> findAll() async {
     print('Estamos acessando o findAll: ');
@@ -74,5 +74,10 @@ class TaskDao {
     return toList(result);
   }
 
-  delete(String nomeDaTarefa) async {}
+  delete(String nomeDaTarefa) async {
+    print('Deletando tarefa: $nomeDaTarefa');
+    final Database bancoDeDados = await getDatabase();
+    return bancoDeDados
+        .delete(_tablename, where: '$name = ?', whereArgs: [nomeDaTarefa]);
+  }
 }

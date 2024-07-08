@@ -1,3 +1,5 @@
+import 'package:alura/components/task.dart';
+import 'package:alura/data/task_dao.dart';
 import 'package:alura/data/task_inherited.dart';
 import 'package:alura/screens/form_screen.dart';
 import 'package:flutter/material.dart';
@@ -52,9 +54,15 @@ class _InitialScreenState extends State<InitialScreen> {
         ),
         backgroundColor: Colors.blue,
       ),
-      body: ListView(
-        padding: const EdgeInsets.only(top: 8, bottom: 70),
-        children: TaskInherited.of(context).taskList,
+      body: Padding(
+        padding: EdgeInsets.only(top: 8, bottom: 70),
+        child: FutureBuilder<List<task>>(future: TaskDao().findAll(), builder: (context, snapshot){
+          List<task>? items = snapshot.data;
+          return ListView.builder(itemCount: items.length, itemBuilder: (BuildContext context, int index){
+            final task tarefa = items[index];
+            return tarefa;
+          });
+        }),
       ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.blue,

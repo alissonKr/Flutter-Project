@@ -78,6 +78,6 @@ class TaskDao {
     print('Deletando tarefa: $nomeDaTarefa');
     final Database bancoDeDados = await getDatabase();
     return bancoDeDados
-        .delete(_tablename, where: '$name = ?', whereArgs: [nomeDaTarefa]);
+        .delete(_tablename, where: '$_name = ?', whereArgs: [nomeDaTarefa]);
   }
 }

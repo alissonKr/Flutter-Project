@@ -16,6 +16,11 @@ class _InitialScreenState extends State<InitialScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        actions: [
+          IconButton(onPressed: (){setState(() {
+            
+          });}, icon: Icon(Icons.refresh))
+        ],
         toolbarHeight: 80,
         //leading: SizedBox(),
         title: const Column(

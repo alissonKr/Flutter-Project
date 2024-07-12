@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+// ignore: camel_case_types
 class sliverAppBar extends StatefulWidget {
   const sliverAppBar({super.key});
 
@@ -7,6 +8,7 @@ class sliverAppBar extends StatefulWidget {
   State<sliverAppBar> createState() => _sliverAppBarState();
 }
 
+// ignore: camel_case_types
 class _sliverAppBarState extends State<sliverAppBar> {
   @override
   Widget build(BuildContext context) {

@@ -1,6 +1,7 @@
+// ignore_for_file: dead_code, prefer_const_constructors, prefer_const_literals_to_create_immutables, avoid_print
+
 import 'package:alura/components/task.dart';
 import 'package:alura/data/task_dao.dart';
-import 'package:alura/data/task_inherited.dart';
 import 'package:alura/screens/form_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -17,9 +18,11 @@ class _InitialScreenState extends State<InitialScreen> {
     return Scaffold(
       appBar: AppBar(
         actions: [
-          IconButton(onPressed: (){setState(() {
-            
-          });}, icon: Icon(Icons.refresh))
+          IconButton(
+              onPressed: () {
+                setState(() {});
+              },
+              icon: Icon(Icons.refresh))
         ],
         toolbarHeight: 80,
         //leading: SizedBox(),
@@ -61,10 +64,10 @@ class _InitialScreenState extends State<InitialScreen> {
       ),
       body: Padding(
         padding: EdgeInsets.only(top: 8, bottom: 70),
-        child: FutureBuilder<List<task>>(
+        child: FutureBuilder<List<Task>>(
             future: TaskDao().findAll(),
             builder: (context, snapshot) {
-              List<task>? items = snapshot.data;
+              List<Task>? items = snapshot.data;
               switch (snapshot.connectionState) {
                 case ConnectionState.none:
                   return Center(
@@ -102,7 +105,7 @@ class _InitialScreenState extends State<InitialScreen> {
                       return ListView.builder(
                           itemCount: items.length,
                           itemBuilder: (BuildContext context, int index) {
-                            final task tarefa = items[index];
+                            final Task tarefa = items[index];
                             return tarefa;
                           });
                     }

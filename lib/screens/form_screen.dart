@@ -1,6 +1,5 @@
 import 'package:alura/components/task.dart';
 import 'package:alura/data/task_dao.dart';
-import 'package:alura/data/task_inherited.dart';
 import 'package:flutter/material.dart';
 
 class FormScreen extends StatefulWidget {
@@ -161,11 +160,11 @@ class _FormScreenState extends State<FormScreen> {
                         /*print(nameController.text);
                         print(difficultyController.text);
                         print(imageController.text);*/
-                        TaskDao().save(task(
+                        TaskDao().save(Task(
                           nameController.text,
                           imageController.text,
                           int.parse(difficultyController.text),
-                        ));                        
+                        ));
                         ScaffoldMessenger.of(context).showSnackBar(
                           const SnackBar(
                             content: Text('Criando Nova Tarefa'),

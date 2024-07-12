@@ -1,3 +1,5 @@
+// ignore_for_file: depend_on_referenced_packages
+
 import 'package:alura/data/task_dao.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';

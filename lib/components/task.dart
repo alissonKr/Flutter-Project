@@ -1,21 +1,23 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:alura/components/difficulty.dart';
 import 'package:alura/data/task_dao.dart';
 import 'package:flutter/material.dart';
 
-class task extends StatefulWidget {
+class Task extends StatefulWidget {
   final String nome;
   final String foto;
   final int dificuldade;
 
-  task(this.nome, this.foto, this.dificuldade, {Key? key}) : super(key: key);
+  Task(this.nome, this.foto, this.dificuldade, {Key? key}) : super(key: key);
 
   int nivel = 0;
 
   @override
-  State<task> createState() => _taskState();
+  State<Task> createState() => _TaskState();
 }
 
-class _taskState extends State<task> {
+class _TaskState extends State<Task> {
   bool assetOrNetwork() {
     if (widget.foto.contains('http')) {
       return false;

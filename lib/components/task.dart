@@ -84,7 +84,7 @@ class _TaskState extends State<Task> {
                       width: 62,
                       child: ElevatedButton(
                           onLongPress: () {
-                            TaskDao().delete(widget.nome);
+                            _showDeleteConfirmationDialog(context);
                           },
                           style: ElevatedButton.styleFrom(
                               backgroundColor: Colors.blue,
@@ -140,6 +140,37 @@ class _TaskState extends State<Task> {
           )
         ],
       ),
+    );
+  }
+
+  void _showDeleteConfirmationDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Confirmar Exclusão'),
+          content: Text('Tem certeza que deseja excluir esta tarefa?'),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: Text('Cancelar'),
+            ),
+            TextButton(
+              onPressed: () {
+                // Ação de exclusão da tarefa
+                TaskDao().delete(widget.nome);
+                Navigator.pop(context);
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(content: Text('Tarefa excluída com sucesso!')),
+                );
+              },
+              child: Text('Excluir'),
+            ),
+          ],
+        );
+      },
     );
   }
 }

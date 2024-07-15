@@ -1,3 +1,4 @@
+// Suggested code may be subject to a license. Learn more: ~LicenseLog:3345722696.
 // ignore_for_file: must_be_immutable
 
 import 'package:alura/components/difficulty.dart';

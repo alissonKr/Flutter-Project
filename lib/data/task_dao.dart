@@ -8,12 +8,14 @@ class TaskDao {
   static String tableSql = 'CREATE TABLE $_tablename('
       '$_name TEXT, '
       '$_difficulty INTEGER, '
-      '$_image TEXT)';
+      '$_image TEXT, '
+      '$_level INTEGER)';
 
   static String _tablename = 'taskTabl';
   static String _name = 'name';
   static String _difficulty = 'difficulty';
   static String _image = 'image';
+  static String _level = 'level';
 
   save(Task tarefa) async {
     print('Iniciando o save: ');
@@ -40,6 +42,7 @@ class TaskDao {
     mapaDeTarefas[_name] = tarefa.nome;
     mapaDeTarefas[_difficulty] = tarefa.dificuldade;
     mapaDeTarefas[_image] = tarefa.foto;
+    mapaDeTarefas[_level] = tarefa.nivel;
     print('Mapa de Tarefas: $mapaDeTarefas');
     return mapaDeTarefas;
   }

@@ -6,11 +6,17 @@ import 'package:alura/data/task_dao.dart';
 import 'package:flutter/material.dart';
 
 class Task extends StatefulWidget {
+  final String uuid;
   final String nome;
   final String foto;
   final int dificuldade;
 
-  Task(this.nome, this.foto, this.dificuldade, {Key? key}) : super(key: key);
+  Task(this.uuid, this.nome, this.foto, this.dificuldade, this.nivel,
+      {super.key});
+
+  Task getTask() {
+    return Task(uuid, nome, foto, dificuldade, nivel);
+  }
 
   int nivel = 0;
 
@@ -95,6 +101,8 @@ class _TaskState extends State<Task> {
                           onPressed: () {
                             setState(() {
                               widget.nivel++;
+                              TaskDao().updateLevel(widget.getTask());
+
                             });
                             //print(nivel);
                           },
@@ -161,7 +169,7 @@ class _TaskState extends State<Task> {
             TextButton(
               onPressed: () {
                 // Ação de exclusão da tarefa
-                TaskDao().delete(widget.nome);
+                TaskDao().delete(widget.uuid);
                 Navigator.pop(context);
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(content: Text('Tarefa excluída com sucesso!')),

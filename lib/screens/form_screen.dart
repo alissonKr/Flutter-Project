@@ -1,6 +1,7 @@
 import 'package:alura/components/task.dart';
 import 'package:alura/data/task_dao.dart';
 import 'package:flutter/material.dart';
+import 'package:uuid/uuid.dart';
 
 class FormScreen extends StatefulWidget {
   const FormScreen({Key? key, required this.taskContext}) : super(key: key);
@@ -12,6 +13,7 @@ class FormScreen extends StatefulWidget {
 }
 
 class _FormScreenState extends State<FormScreen> {
+  var uuid = const Uuid();
   TextEditingController nameController = TextEditingController();
   TextEditingController difficultyController = TextEditingController();
   TextEditingController imageController = TextEditingController();
@@ -155,15 +157,16 @@ class _FormScreenState extends State<FormScreen> {
                     style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.blue,
                         foregroundColor: Colors.white),
-                    onPressed: () {
+                    onPressed: () async {
                       if (_formKey.currentState!.validate()) {
-                        /*print(nameController.text);
-                        print(difficultyController.text);
-                        print(imageController.text);*/
-                        TaskDao().save(Task(
+                        int nivel = 0;
+                        var currentUiid = uuid.v4();
+                        await TaskDao().save(Task(
+                          currentUiid,
                           nameController.text,
                           imageController.text,
                           int.parse(difficultyController.text),
+                          nivel
                         ));
                         ScaffoldMessenger.of(context).showSnackBar(
                           const SnackBar(

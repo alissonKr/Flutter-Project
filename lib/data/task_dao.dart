@@ -6,21 +6,23 @@ import 'package:sqflite/sqflite.dart';
 
 class TaskDao {
   static String tableSql = 'CREATE TABLE $_tablename('
+      '$_uuid TEXT, '
       '$_name TEXT, '
       '$_difficulty INTEGER, '
       '$_image TEXT, '
-      '$_level INTEGER)';
+      '$_nivel INTEGER)';
 
+  static String _uuid = 'uuid';
   static String _tablename = 'taskTabl';
   static String _name = 'name';
   static String _difficulty = 'difficulty';
   static String _image = 'image';
-  static String _level = 'level';
+  static String _nivel = 'level';
 
   save(Task tarefa) async {
     print('Iniciando o save: ');
     final Database bandoDeDados = await getDatabase();
-    var itemExist = await find(tarefa.nome);
+    var itemExist = await find(tarefa.uuid);
     Map<String, dynamic> taskMap = toMap(tarefa);
     if (itemExist.isEmpty) {
       print('A tarefa não existia.');
@@ -30,19 +32,31 @@ class TaskDao {
       return await bandoDeDados.update(
         _tablename,
         taskMap,
-        where: '$_name = ?',
-        whereArgs: [tarefa.nome],
+        where: '$_uuid = ?',
+        whereArgs: [tarefa.uuid],
       );
     }
+  }
+
+  updateLevel(Task tarefa) async {
+    final Database bancoDeDados = await getDatabase();
+    Map<String, dynamic> taskMap = toMap(tarefa);
+    return await bancoDeDados.update(
+      _tablename,
+      taskMap,
+      where: '$_uuid = ?',
+      whereArgs: [tarefa.uuid],
+    );
   }
 
   Map<String, dynamic> toMap(Task tarefa) {
     print('Convertendo Tarefa em map: ');
     final Map<String, dynamic> mapaDeTarefas = Map();
+    mapaDeTarefas[_uuid] = tarefa.uuid;
     mapaDeTarefas[_name] = tarefa.nome;
     mapaDeTarefas[_difficulty] = tarefa.dificuldade;
     mapaDeTarefas[_image] = tarefa.foto;
-    mapaDeTarefas[_level] = tarefa.nivel;
+    mapaDeTarefas[_nivel] = tarefa.nivel;
     print('Mapa de Tarefas: $mapaDeTarefas');
     return mapaDeTarefas;
   }
@@ -56,33 +70,37 @@ class TaskDao {
     return toList(result);
   }
 
-  List<Task> toList(List<Map<String, dynamic>> mapaDeTarefas) {
-    print('Convertendo to List: ');
-    final List<Task> tarefas = [];
+   List<Task> toList(List<Map<String, dynamic>> mapaDeTarefas) {
+    List<Task> tarefas = [];
+
     for (Map<String, dynamic> linha in mapaDeTarefas) {
-      final Task tarefa = Task(linha[_name], linha[_image], linha[_difficulty]);
+      var uuid = linha[_uuid];
+      var name = linha[_name];
+      var image = linha[_image];
+      var difficulty = linha[_difficulty];
+      var nivel = linha[_nivel];
+      final Task tarefa = Task(uuid, name, image, difficulty, nivel);
       tarefas.add(tarefa);
     }
-    print(' Lista de Tarefas $tarefas');
     return tarefas;
   }
 
-  Future<List<Task>> find(String nomeDaTarefa) async {
+  Future<List<Task>> find(String uuid) async {
     print('acessando find: ');
     final Database bancoDeDados = await getDatabase();
     final List<Map<String, dynamic>> result = await bancoDeDados.query(
       _tablename,
-      where: '$_name = ?',
-      whereArgs: [nomeDaTarefa],
+      where: '$_uuid = ?',
+      whereArgs: [uuid],
     );
     print('Tarefa encontrada: ${toList(result)}');
     return toList(result);
   }
 
-  delete(String nomeDaTarefa) async {
-    print('Deletando tarefa: $nomeDaTarefa');
+  delete(String uuidDaTarefa) async {
+    print('Deletando tarefa: $_name');
     final Database bancoDeDados = await getDatabase();
     return bancoDeDados
-        .delete(_tablename, where: '$_name = ?', whereArgs: [nomeDaTarefa]);
+        .delete(_tablename, where: '$_uuid = ?', whereArgs: [uuidDaTarefa]);
   }
 }
